@@ -1,0 +1,292 @@
+/* =========================================
+   1. 전체 레이아웃 및 공통 요소
+   ========================================= */
+.posts-container, 
+.posts-view-container { 
+    max-width: 1012px; 
+    margin: 40px auto; 
+    padding: 0 16px; 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; 
+}
+
+/* 링크 기본 스타일 */
+a { color: #0969da; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+
+/* =========================================
+   2. 게시글 목록 페이지 (postsForm.jsp)
+   ========================================= */
+
+/* 목록 상단 헤더 (제목 & New Post 버튼) */
+.list-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 20px; 
+}
+.list-header h1 { font-size: 24px; font-weight: 600; }
+
+/* 카테고리 탭 메뉴 */
+.category-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #d0d7de;
+    padding-bottom: 1px;
+}
+.category-tabs a {
+    padding: 8px 16px;
+    color: #57606a;
+    font-size: 14px;
+    border: 1px solid transparent;
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+    margin-bottom: -1px;
+    transition: 0.2s;
+}
+.category-tabs a:hover { color: #24292f; background-color: #f6f8fa; }
+.category-tabs a.active { 
+    color: #24292f; 
+    background-color: #fff; 
+    border-color: #d0d7de; 
+    font-weight: 600; 
+}
+
+/* 리스트 박스 테두리 및 요약바 */
+.posts-list-box {
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+    background-color: #fff;
+    overflow: hidden;
+}
+.list-summary {
+    background-color: #f6f8fa;
+    padding: 12px 16px;
+    border-bottom: 1px solid #d0d7de;
+    font-size: 14px;
+    color: #1f2328;
+}
+
+/* 리스트 아이템 내부 요소 */
+.posts-list-box ul { padding: 0; margin: 0; list-style: none; }
+.posts-list-item {
+    padding: 12px 16px;
+    border-bottom: 1px solid #d0d7de;
+    transition: background-color 0.1s;
+}
+.posts-list-item:last-child { border-bottom: none; }
+.posts-list-item:hover { background-color: #f6f8fa; }
+
+.item-title { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+.item-meta { font-size: 12px; color: #57606a; }
+
+
+/* =========================================
+   3. 게시글 상세 페이지 (postsContent.jsp)
+   ========================================= */
+
+/* 상세 페이지 헤더 */
+.posts-header-area { border-bottom: 1px solid #d8dee4; padding-bottom: 16px; margin-bottom: 24px; }
+.posts-title { font-size: 32px; font-weight: 400; margin-bottom: 8px; }
+.posts-meta { color: #57606a; font-size: 14px; display: flex; align-items: center; gap: 8px; }
+
+/* 깃허브 스타일 버블(말풍선) */
+.posts-bubble { border: 1px solid #d0d7de; border-radius: 6px; margin-bottom: 20px; background: #fff; overflow: hidden; }
+.posts-bubble-header { 
+    background-color: #f6f8fa; border-bottom: 1px solid #d0d7de; padding: 8px 16px; 
+    font-size: 14px; display: flex; justify-content: space-between; align-items: center;
+}
+.posts-bubble-body { padding: 16px; min-height: 40px; font-size: 14px; color: #1f2328; line-height: 1.6; }
+
+/* 본문 전용 스타일 (상단 여백 강화) */
+.posts-view-container > .posts-bubble:first-of-type { margin-bottom: 40px; border-bottom-width: 2px; }
+
+/* 댓글 섹션 제목 가상 요소 */
+.comments-section::before {
+    content: "Comments";
+    display: block;
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: #1f2328;
+}
+
+/* 답글(대댓글) 들여쓰기 및 왼쪽 세로선 */
+.reply-item { margin-left: 45px; position: relative; }
+.reply-item::before { 
+    content: ""; position: absolute; left: -25px; top: 0; bottom: 20px; 
+    width: 2px; background-color: #d0d7de; 
+}
+
+
+/* =========================================
+   4. 글 수정/작성 페이지 (postsModify.jsp)
+   ========================================= */
+.modify-container { max-width: 800px; margin: 40px auto; background: #fff; border: 1px solid #d0d7de; border-radius: 6px; padding: 24px; }
+.modify-title { font-size: 24px; font-weight: 600; margin-bottom: 20px; border-bottom: 1px solid #d0d7de; padding-bottom: 10px; }
+
+/* 수정용 테이블 */
+.modify-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+.modify-table th { background-color: #f6f8fa; color: #57606a; font-size: 14px; padding: 12px; border: 1px solid #d0d7de; width: 120px; }
+.modify-table td { padding: 12px; border: 1px solid #d0d7de; font-size: 14px; }
+
+/* 폼 입력창 디자인 */
+.modify-input, .modify-textarea, .gh-input {
+    width: 100%; padding: 8px 12px; border: 1px solid #d0d7de; border-radius: 6px; 
+    background-color: #f6f8fa; box-sizing: border-box; font-family: inherit; font-size: 14px;
+}
+.modify-input:focus, .modify-textarea:focus, .gh-input:focus {
+    background-color: #fff; border-color: #0969da; outline: none; box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.3);
+}
+
+/* 하단 버튼 정렬 영역 */
+.modify-footer { display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px; }
+
+
+/* =========================================
+   5. 버튼 및 UI 컴포넌트 (Shared)
+   ========================================= */
+
+/* 기본 버튼 (회색) */
+.btn-gh { 
+    padding: 5px 12px; font-size: 12px; font-weight: 600; border: 1px solid #d0d7de; 
+    border-radius: 6px; background: #f6f8fa; cursor: pointer; transition: 0.2s; color: #24292f;
+}
+.btn-gh:hover { background: #f3f4f6; border-color: #afb8c1; }
+
+/* 긍정/강조 버튼 (초록색 - New Post, Comment, 수정완료 등) */
+.btn-new-post, .btn-comment, .btn-primary {
+    background-color: #2da44e;
+    color: #fff;
+    border: 1px solid rgba(31,35,40,0.15);
+    border-radius: 6px;
+    padding: 5px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.btn-new-post:hover, .btn-comment:hover, .btn-primary:hover { background-color: #2c974b; }
+
+/* 카테고리/상태 뱃지 */
+.badge-NOTICE {
+    background-color: #cf222e; color: #fff; padding: 2px 6px; 
+    border-radius: 4px; font-size: 11px; margin-right: 6px; vertical-align: middle;
+}
+
+/* 유저 장착 칭호 뱃지 */
+.user-title-badge {
+    display: inline-block;
+    padding: 2px 6px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #bf8700;
+    background-color: #fff8c5;
+    border: 1px solid rgba(212, 167, 44, 0.4);
+    border-radius: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+}
+/* =========================================
+   👑 유저 장착 칭호 전용 스타일
+   ========================================= */
+.user-title-badge {
+    display: inline-block;
+    color: #0969da;               /* 깃허브 포인트 파란색 */
+    background-color: #ddf4ff;    /* 연한 파란색 배경 */
+    border: 1px solid rgba(9, 105, 218, 0.2);
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-size: 12px;              /* 닉네임보다 살짝 작게 */
+    font-weight: 700;             /* 글씨는 굵게 */
+    margin-right: 6px;            /* 닉네임과의 간격 */
+    vertical-align: middle;
+}
+
+/* point.css 에 추가 */
+.enhance-card {
+    background: #fff;
+    border: 1px solid #d0d7de;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(140,149,159,0.2);
+    overflow: hidden;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.enhance-header {
+    background: #24292f;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.title-display {
+    text-align: center;
+    padding: 40px 0;
+    background: radial-gradient(circle, #fff 0%, #f6f8fa 100%);
+}
+.main-title-name { font-size: 32px; font-weight: 800; color: #24292f; margin: 10px 0; }
+.main-level-badge { 
+    display: inline-block; font-size: 24px; color: #0969da; 
+    background: #ddf4ff; padding: 4px 16px; border-radius: 20px; font-weight: bold;
+}
+.pity-bar-bg { background: #eff1f3; height: 12px; border-radius: 6px; margin: 10px 0; overflow: hidden; }
+.pity-bar-fill { background: linear-gradient(90deg, #cf222e, #ff7b72); height: 100%; transition: width 0.5s ease; }
+.btn-enhance-main {
+    width: 100%; padding: 15px; background: #2da44e; color: #fff;
+    font-size: 20px; font-weight: bold; border: none; cursor: pointer; transition: 0.3s;
+}
+.btn-enhance-main:hover { background: #2c974b; transform: translateY(-2px); }
+/* =========================================
+   🎨 코드 프리뷰 전용 애니메이션 & 디자인 CSS
+   ========================================= */
+.code-preview-container {
+    position: relative;
+    margin-top: 15px;
+    border-radius: 6px;
+    background-color: #1e1e1e; /* 다크 테마 배경 */
+    color: #d4d4d4;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+    max-height: 150px; /* 평상시 보여지는 높이 제한 */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* 마우스를 올렸을 때 전체 크기로 부드럽게 펼쳐짐 */
+.code-preview-container:hover {
+    max-height: 1000px; 
+    overflow-y: auto;
+}
+
+.code-preview {
+    margin: 0;
+    padding: 16px;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    white-space: pre-wrap; /* 자동 줄바꿈 및 띄어쓰기 유지 */
+    word-break: break-all;
+}
+
+/* 아래쪽 그라데이션 (더보기 효과) */
+.preview-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background: linear-gradient(transparent, #1e1e1e 80%);
+    color: #8c959f;
+    text-align: center;
+    line-height: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* 호버 시 그라데이션 가리기 */
+.code-preview-container:hover .preview-overlay {
+    opacity: 0;
+}
